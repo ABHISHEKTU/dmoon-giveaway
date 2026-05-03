@@ -1,0 +1,14 @@
+{
+  "name": "dmoon-giveaway",
+  "version": "1.0.0",
+  "description": "D Moon Giveaway Comment Detector",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0",
+    "crypto": "^1.0.1"
+  }
+}
