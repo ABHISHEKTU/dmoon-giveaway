@@ -195,10 +195,19 @@ app.post('/webhook', async (req, res) => {
 // DASHBOARD
 // ============================================================
 app.get('/', (req, res) => {
-  const rows = winners.map(w => `
+  const rows = winners.map(w => {
+    const profileUrl = w.platform === 'Instagram'
+      ? `https://instagram.com/${w.username.replace('@', '')}`
+      : `https://facebook.com/${w.userId}`;
+    return `
     <tr>
       <td>${w.platform === 'Instagram' ? '📸' : '📘'} ${w.platform}</td>
-      <td><strong>${w.username}</strong></td>
+      <td>
+        <a href="${profileUrl}" target="_blank" style="color:#38bdf8;text-decoration:none;font-weight:700;display:flex;align-items:center;gap:6px;">
+          ${w.username}
+          <span style="font-size:11px;opacity:0.6">↗</span>
+        </a>
+      </td>
       <td><code>${w.code}</code></td>
       <td>${w.comment}</td>
       <td>${w.dmSent ? '✅ Sent' : '❌ Failed'}</td>
@@ -209,7 +218,7 @@ app.get('/', (req, res) => {
         </button>
       </td>
     </tr>
-  `).join('');
+  `}).join('');
 
   res.send(`<!DOCTYPE html>
 <html>
