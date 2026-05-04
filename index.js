@@ -92,7 +92,7 @@ async function sendFacebookDM(fbUserId, message) {
 // ============================================================
 function isGiftComment(text) {
   if (!text) return false;
-  return /\bgift\b/i.test(text.trim());
+  return /dmoon\s*gift/i.test(text.trim());
 }
 
 // ============================================================
