@@ -76,21 +76,8 @@
       inset:0;
     }
 
-    /* CODE — on the purple vertical bar left side */
-    .ov-code{
-      position:absolute;
-      left:13.5%;
-      width:5%;
-      top:52%;
-      transform:translateX(-50%) translateY(-50%) rotate(-90deg);
-      writing-mode:horizontal-tb;
-      white-space:nowrap;
-      color:white;
-      font-weight:900;
-      font-size:clamp(.35rem,.85vw,.7rem);
-      letter-spacing:.06em;
-      text-align:center;
-    }
+    /* CODE — replaced by inline HTML box */
+    .ov-code{ display:none; }
 
     /* NAME field — on the dotted line */
     .ov-name{
@@ -218,7 +205,27 @@
     <div id="couponEl">
       <img class="coupon-bg" src="/coupon-bg.png" alt="D Moon Eid Special Giveaway Coupon" crossorigin="anonymous">
       <div class="overlay">
-        <div class="ov-code" id="couponCode">EID-0000</div>
+        <div id="couponCode" style="
+          position:absolute;
+          left:12%;
+          top:50%;
+          width:4.5%;
+          height:72%;
+          background:#3d2f8f;
+          border-radius:8px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          writing-mode:vertical-rl;
+          text-orientation:mixed;
+          transform:translate(-50%,-50%) rotate(180deg);
+          color:white;
+          font-weight:900;
+          font-size:clamp(.4rem,1vw,.85rem);
+          letter-spacing:.1em;
+          text-align:center;
+          z-index:10;
+        ">EID-0000</div>
         <div class="ov-name" id="couponName"></div>
         <div class="ov-phone" id="couponPhone"></div>
         <div class="ov-emirate" id="couponEmirate"></div>
