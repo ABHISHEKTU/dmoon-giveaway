@@ -368,6 +368,17 @@ app.get('/coupon-bg.png', (req, res) => {
   }
 });
 
+
+app.get('/dmoon-logo.png', (req, res) => {
+  const filePath = path.join(__dirname, 'dmoon-logo.png');
+  if (fs.existsSync(filePath)) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('Logo not found.');
+  }
+});
+
 // ============================================================
 // START
 // ============================================================

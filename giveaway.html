@@ -12,7 +12,7 @@
     html{scroll-behavior:smooth}
     body{min-height:100vh;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0a2e 0%,#1a0a4e 40%,#0d1a5e 100%);color:white}
     button,input,select{font:inherit;cursor:pointer}
-    .page{width:min(1000px,calc(100% - 32px));margin:0 auto;padding:28px 0 60px}
+    .page{width:min(1200px,calc(100% - 24px));margin:0 auto;padding:28px 0 60px}
 
     /* TOPBAR */
     .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
@@ -54,7 +54,7 @@
       position:relative;
       width:100%;
       /* maintain 1545:615 aspect ratio of original image */
-      aspect-ratio:1545/615;
+      aspect-ratio:1545/615;max-width:100%;
       border-radius:12px;
       overflow:hidden;
       box-shadow:0 20px 60px rgba(0,0,0,0.55);
@@ -80,15 +80,17 @@
     /* CODE — on the purple vertical bar left side */
     .ov-code{
       position:absolute;
-      left:3.5%;
-      top:50%;
+      left:1.8%;
+      top:55%;
+      width:5.5%;
       transform:translateY(-50%) rotate(180deg);
       writing-mode:vertical-rl;
       color:#ffd700;
       font-weight:900;
-      font-size:clamp(.6rem,1.6vw,1.1rem);
+      font-size:clamp(.5rem,1.3vw,1rem);
       letter-spacing:.08em;
       text-shadow:0 1px 3px rgba(0,0,0,0.5);
+      text-align:center;
     }
 
     /* NAME field — on the dotted line */
@@ -185,7 +187,7 @@
 <main class="page">
   <header class="topbar">
     <a href="https://dmoonadvertising.com" class="brand">
-      🌙 <span>Dmoon Advertising</span>
+      <img src="/dmoon-logo.png" alt="Dmoon Logo" style="width:48px;height:48px;object-fit:contain;border-radius:50%;background:white;padding:4px;"> <span>Dmoon Advertising</span>
     </a>
   </header>
 
