@@ -335,25 +335,16 @@ Thank you for participating! Winner announcement: 24 May 2026 🌙
 // ============================================================
 // API — get winners as JSON
 // ============================================================
+
+// ============================================================
+// API — get winners as JSON
+// ============================================================
 app.get('/api/winners', (req, res) => {
   res.json(winners);
 });
 
 // ============================================================
-// START
-// ============================================================
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`D Moon Giveaway Server running on port ${PORT}`);
-  console.log(`Dashboard: http://localhost:${PORT}`);
-  console.log(`Webhook URL: http://localhost:${PORT}/webhook`);
-});
-
-// ============================================================
-// GIVEAWAY PAGE — customer facing
-// ============================================================
-// ============================================================
-// GIVEAWAY PAGE — serves giveaway.html file
+// GIVEAWAY PAGE
 // ============================================================
 const fs = require('fs');
 const path = require('path');
@@ -363,7 +354,7 @@ app.get('/giveaway', (req, res) => {
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
   } else {
-    res.status(404).send('Giveaway page not found. Please upload giveaway.html to the server.');
+    res.status(404).send('Giveaway page not found.');
   }
 });
 
