@@ -13,181 +13,168 @@
     body{min-height:100vh;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0a2e 0%,#1a0a4e 40%,#0d1a5e 100%);color:white}
     button,input,select{font:inherit;cursor:pointer}
     .page{width:min(1000px,calc(100% - 32px));margin:0 auto;padding:28px 0 60px}
+
+    /* TOPBAR */
     .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:white;font-weight:900;font-size:1.1rem;letter-spacing:.05em}
-    .brand-moon{font-size:36px}
-    .hero{text-align:center;margin-bottom:36px}
-    .hero h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;line-height:1.1;text-transform:uppercase;background:linear-gradient(135deg,#ffd700,#ff6b35,#ff1493);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
-    .hero p{color:rgba(255,255,255,0.65);font-size:1rem}
-    .entry-card{max-width:460px;margin:0 auto;padding:32px;border-radius:20px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(20px);box-shadow:0 32px 80px rgba(0,0,0,0.4)}
-    .entry-card h2{font-size:1.4rem;font-weight:700;margin-bottom:6px}
-    .entry-card>p{color:rgba(255,255,255,0.6);font-size:.9rem;margin-bottom:22px;line-height:1.5}
-    label{display:block;margin:0 0 7px;color:rgba(255,255,255,0.75);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em}
-    input,select{width:100%;height:50px;border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:0 16px;color:white;background:rgba(255,255,255,0.08);outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:14px}
-    input::placeholder{color:rgba(255,255,255,0.3)}
-    input:focus,select:focus{border-color:#ffd700;box-shadow:0 0 0 4px rgba(255,215,0,0.12)}
+
+    /* HERO */
+    .hero{text-align:center;margin-bottom:32px}
+    .hero h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:900;text-transform:uppercase;background:linear-gradient(135deg,#ffd700,#ff6b35,#ff1493);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .hero p{color:rgba(255,255,255,0.6);font-size:.95rem}
+
+    /* ENTRY CARD */
+    .entry-card{max-width:440px;margin:0 auto;padding:30px;border-radius:18px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(20px);box-shadow:0 28px 70px rgba(0,0,0,0.4)}
+    .entry-card h2{font-size:1.35rem;font-weight:700;margin-bottom:6px}
+    .entry-card>p{color:rgba(255,255,255,0.55);font-size:.88rem;margin-bottom:20px;line-height:1.5}
+    label{display:block;margin:0 0 7px;color:rgba(255,255,255,0.7);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+    input,select{width:100%;height:48px;border:1px solid rgba(255,255,255,0.15);border-radius:11px;padding:0 14px;color:white;background:rgba(255,255,255,0.08);outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:12px}
+    input::placeholder{color:rgba(255,255,255,0.28)}
+    input:focus,select:focus{border-color:#ffd700;box-shadow:0 0 0 3px rgba(255,215,0,0.12)}
     select option{background:#1a0a4e;color:white}
-    .main-btn{width:100%;min-height:52px;border:0;border-radius:14px;color:#1a0a4e;background:linear-gradient(135deg,#ffd700,#ff8c00);font-weight:900;font-size:1rem;box-shadow:0 10px 28px rgba(255,215,0,0.28);transition:opacity .2s,transform .1s;margin-top:6px}
+    .main-btn{width:100%;min-height:50px;border:0;border-radius:13px;color:#1a0a4e;background:linear-gradient(135deg,#ffd700,#ff8c00);font-weight:900;font-size:.95rem;box-shadow:0 10px 26px rgba(255,215,0,0.25);transition:opacity .2s,transform .1s;margin-top:4px}
     .main-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
-    .main-btn:disabled{opacity:.32;cursor:not-allowed;box-shadow:none}
-    .msg{display:none;margin-top:12px;padding:11px 14px;border-radius:10px;font-size:.88rem;line-height:1.45}
+    .main-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+    .msg{display:none;margin-top:11px;padding:10px 13px;border-radius:9px;font-size:.87rem;line-height:1.45}
     .msg.show{display:block}
-    .msg.err{color:#ff8a8a;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.25)}
-    .msg.ok{color:#8ce99a;background:rgba(105,219,124,0.1);border:1px solid rgba(105,219,124,0.25)}
-    .coupon-section{display:none;margin-top:36px}
+    .msg.err{color:#ff8a8a;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.22)}
+    .msg.ok{color:#8ce99a;background:rgba(105,219,124,0.1);border:1px solid rgba(105,219,124,0.22)}
+
+    /* COUPON SECTION */
+    .coupon-section{display:none;margin-top:32px}
     .coupon-section.show{display:block}
-    .coupon-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
-    .coupon-top h2{font-size:1.3rem;font-weight:700}
-    .back-btn{min-height:38px;border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:0 16px;color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.07);font-weight:600;font-size:.88rem}
+    .coupon-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+    .coupon-top h2{font-size:1.25rem;font-weight:700}
+    .back-btn{min-height:36px;border:1px solid rgba(255,255,255,0.18);border-radius:9px;padding:0 14px;color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.06);font-weight:600;font-size:.85rem}
 
-    /* =============================================
-       OFFICIAL COUPON — matches D Moon PDF design
-    ============================================= */
+    /* =====================================================
+       COUPON — official image as background, text overlay
+    ===================================================== */
     #couponEl{
+      position:relative;
       width:100%;
-      display:grid;
-      grid-template-columns:100px 1fr;
-      border-radius:14px;
+      /* maintain 1545:615 aspect ratio of original image */
+      aspect-ratio:1545/615;
+      border-radius:12px;
       overflow:hidden;
-      box-shadow:0 24px 70px rgba(0,0,0,0.55);
+      box-shadow:0 20px 60px rgba(0,0,0,0.55);
+      font-family:'Poppins',sans-serif;
     }
 
-    /* LEFT STUB */
-    .c-stub{
-      background:#1e1060;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 8px;
-      border-right:5px dashed rgba(255,255,255,0.18);
+    .coupon-bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
     }
-    .stub-logo{
-      width:64px;height:64px;border-radius:50%;
-      background:white;display:grid;place-items:center;overflow:hidden;
+
+    /* All overlaid text uses % positions relative to coupon size */
+    .overlay{
+      position:absolute;
+      inset:0;
     }
-    .stub-logo span{font-size:10px;font-weight:900;color:#1e1060;text-align:center;line-height:1.1;text-transform:uppercase;padding:4px}
-    .c-code-vert{
+
+    /* CODE — on the purple vertical bar left side */
+    .ov-code{
+      position:absolute;
+      left:3.5%;
+      top:50%;
+      transform:translateY(-50%) rotate(180deg);
       writing-mode:vertical-rl;
-      transform:rotate(180deg);
-      display:flex;align-items:center;gap:6px;
-      font-weight:700;color:white;font-size:.9rem;
-    }
-    .c-code-val{
-      background:#ffd700;color:#1a0a4e;
-      padding:7px 5px;border-radius:6px;
-      font-size:1rem;font-weight:900;letter-spacing:.1em;
+      color:#ffd700;
+      font-weight:900;
+      font-size:clamp(.6rem,1.6vw,1.1rem);
+      letter-spacing:.08em;
+      text-shadow:0 1px 3px rgba(0,0,0,0.5);
     }
 
-    /* RIGHT MAIN */
-    .c-main{
-      background:linear-gradient(135deg,#0c1560 0%,#1a2488 35%,#0e1870 70%,#080e4a 100%);
-      position:relative;overflow:hidden;
-      padding:20px 22px 14px;
-      display:flex;flex-direction:column;justify-content:space-between;
+    /* NAME field — on the dotted line */
+    .ov-name{
+      position:absolute;
+      left:24%;
+      top:43%;
+      width:38%;
+      color:#ffd700;
+      font-weight:700;
+      font-size:clamp(.55rem,1.4vw,.95rem);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-shadow:0 1px 4px rgba(0,0,0,0.6);
     }
-    .c-main::before{
-      content:'';position:absolute;inset:0;
-      background-image:
-        radial-gradient(circle,rgba(255,255,255,0.55) 1px,transparent 1px),
-        radial-gradient(circle,rgba(255,215,0,0.35) 1px,transparent 1px);
-      background-size:70px 70px,110px 110px;
-      background-position:8px 8px,35px 45px;
-      opacity:.55;pointer-events:none;
+
+    /* PHONE field */
+    .ov-phone{
+      position:absolute;
+      left:24%;
+      top:55.5%;
+      width:38%;
+      color:#ffd700;
+      font-weight:700;
+      font-size:clamp(.55rem,1.4vw,.95rem);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-shadow:0 1px 4px rgba(0,0,0,0.6);
     }
-    .c-body{position:relative;z-index:1;display:grid;grid-template-columns:1fr 160px;gap:14px;align-items:start}
 
-    /* FREE GIFTS BADGE */
-    .free-badge{
-      display:inline-flex;align-items:center;gap:10px;
-      background:#c8102e;padding:7px 14px;border-radius:8px;margin-bottom:8px;
+    /* EMIRATES field */
+    .ov-emirate{
+      position:absolute;
+      left:24%;
+      top:68%;
+      width:38%;
+      color:#ffd700;
+      font-weight:700;
+      font-size:clamp(.55rem,1.4vw,.95rem);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-shadow:0 1px 4px rgba(0,0,0,0.6);
     }
-    .free-badge .gift-emoji{font-size:26px}
-    .free-badge .badge-txt{font-size:clamp(1rem,2.2vw,1.5rem);font-weight:900;color:white;line-height:1;text-transform:uppercase}
-
-    .c-title{font-size:clamp(1.3rem,3.2vw,2.3rem);font-weight:900;line-height:1;text-transform:uppercase;color:white;margin-bottom:3px}
-    .c-sub{color:rgba(255,255,255,0.7);font-size:.78rem;margin-bottom:12px}
-
-    /* FIELD LINES */
-    .f-line{display:flex;align-items:flex-end;gap:8px;margin-bottom:9px}
-    .f-lbl{font-weight:700;min-width:65px;font-size:clamp(.8rem,1.6vw,.95rem);color:white;white-space:nowrap}
-    .f-val{
-      flex:1;border-bottom:1.5px dashed rgba(255,255,255,0.38);
-      min-height:20px;padding-bottom:1px;
-      color:#ffd700;font-weight:700;
-      font-size:clamp(.8rem,1.6vw,.95rem);
-      overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
-    }
-    .congrats{font-family:'Dancing Script',cursive;color:#ffd700;font-size:clamp(.85rem,1.9vw,1.1rem);margin-top:8px}
-
-    /* PHONE MOCKUP */
-    .c-phone{display:flex;align-items:center;justify-content:center}
-    .ph-wrap{
-      width:120px;height:190px;
-      border:5px solid #0d0830;border-radius:22px;
-      background:linear-gradient(#ffc107,#ff8c00);
-      box-shadow:0 8px 24px rgba(0,0,0,0.45);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-      position:relative;overflow:hidden;
-    }
-    .ph-wrap::before{content:'';position:absolute;top:5px;left:50%;width:36px;height:9px;border-radius:0 0 7px 7px;background:#0d0830;transform:translateX(-50%)}
-    .ph-inner{background:linear-gradient(#7c3aed,#4c1d95);width:78%;border-radius:9px;padding:7px 5px;text-align:center;margin-top:14px}
-    .ph-give{font-size:.5rem;font-weight:900;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:.1em}
-    .ph-away{font-size:.85rem;font-weight:900;color:white;text-transform:uppercase;line-height:1}
-    .ph-spec{font-size:.42rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.08em}
-    .ph-lucky{font-family:'Dancing Script',cursive;color:#ffd700;font-size:.78rem;margin-top:3px}
-
-    /* SOCIAL ROW */
-    .c-social{position:relative;z-index:1;display:flex;align-items:center;justify-content:flex-end;gap:7px;margin-top:6px;font-size:.76rem;color:rgba(255,255,255,0.65)}
-    .s-i{width:24px;height:24px;border-radius:5px;display:grid;place-items:center;font-size:.85rem;font-weight:900;font-style:normal}
-    .s-fb{background:#1877f2}.s-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
 
     /* FORM DOCK */
-    .form-dock{padding:22px;border-radius:14px;margin-top:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);backdrop-filter:blur(10px)}
-    .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .form-dock{padding:20px;border-radius:13px;margin-top:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px)}
+    .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .form-grid input,.form-grid select{margin-bottom:0}
-    .privacy{color:rgba(255,255,255,0.4);font-size:.8rem;margin-top:12px;line-height:1.4}
-    .dl-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px}
-    .dl-btn{min-height:48px;min-width:230px;border:0;border-radius:12px;color:#1a0a4e;background:linear-gradient(135deg,#ffd700,#ff8c00);font-weight:900;font-size:.95rem;box-shadow:0 8px 22px rgba(255,215,0,0.22);transition:opacity .2s,transform .1s}
+    .privacy{color:rgba(255,255,255,0.38);font-size:.78rem;margin-top:10px;line-height:1.4}
+    .dl-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}
+    .dl-btn{min-height:46px;min-width:220px;border:0;border-radius:11px;color:#1a0a4e;background:linear-gradient(135deg,#ffd700,#ff8c00);font-weight:900;font-size:.9rem;box-shadow:0 8px 20px rgba(255,215,0,0.2);transition:opacity .2s,transform .1s}
     .dl-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
-    .dl-btn:disabled{opacity:.32;cursor:not-allowed;box-shadow:none}
-    .dl-note{color:rgba(255,255,255,0.45);font-size:.85rem}
+    .dl-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+    .dl-note{color:rgba(255,255,255,0.42);font-size:.83rem}
 
     /* LOADING */
     .loading-overlay{display:none;position:fixed;inset:0;z-index:50;place-items:center;background:rgba(0,0,0,0.72);backdrop-filter:blur(6px)}
     .loading-overlay.show{display:grid}
-    .loading-card{padding:38px 46px;border-radius:18px;background:rgba(20,10,60,0.95);border:1px solid rgba(255,215,0,0.2);text-align:center}
-    .spinner{width:50px;height:50px;border:4px solid rgba(255,215,0,0.15);border-top-color:#ffd700;border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite}
+    .loading-card{padding:36px 44px;border-radius:18px;background:rgba(20,10,60,0.96);border:1px solid rgba(255,215,0,0.2);text-align:center}
+    .spinner{width:48px;height:48px;border:4px solid rgba(255,215,0,0.15);border-top-color:#ffd700;border-radius:50%;margin:0 auto 14px;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .loading-card p{font-weight:700;font-size:1.05rem;color:white}
-    .loading-card small{color:rgba(255,255,255,0.45);font-size:.85rem}
+    .loading-card p{font-weight:700;font-size:1rem;color:white}
+    .loading-card small{color:rgba(255,255,255,0.42);font-size:.84rem}
 
     /* MODAL */
     .modal{position:fixed;inset:0;z-index:30;display:none;place-items:center;padding:20px;background:rgba(0,0,0,0.68);backdrop-filter:blur(6px)}
     .modal.show{display:grid}
-    .modal-card{width:min(460px,100%);border-radius:20px;padding:36px 28px;text-align:center;background:linear-gradient(135deg,#1a0a4e,#2d1b69);border:1px solid rgba(255,215,0,0.25);box-shadow:0 40px 100px rgba(0,0,0,0.5)}
-    .modal-card .emoji{font-size:56px;margin-bottom:14px}
-    .modal-card h2{font-size:1.8rem;font-weight:900;margin-bottom:10px}
-    .modal-card p{color:rgba(255,255,255,0.65);line-height:1.5;margin-bottom:20px;font-size:.95rem}
-    .modal-btn{min-height:46px;border:0;border-radius:12px;padding:0 30px;color:#1a0a4e;background:linear-gradient(135deg,#ffd700,#ff8c00);font-weight:900;font-size:.95rem}
+    .modal-card{width:min(440px,100%);border-radius:18px;padding:34px 26px;text-align:center;background:linear-gradient(135deg,#1a0a4e,#2d1b69);border:1px solid rgba(255,215,0,0.22);box-shadow:0 36px 90px rgba(0,0,0,0.5)}
+    .modal-card .emoji{font-size:52px;margin-bottom:12px}
+    .modal-card h2{font-size:1.7rem;font-weight:900;margin-bottom:9px}
+    .modal-card p{color:rgba(255,255,255,0.62);line-height:1.5;margin-bottom:18px;font-size:.9rem}
+    .modal-btn{min-height:44px;border:0;border-radius:11px;padding:0 28px;color:#1a0a4e;background:linear-gradient(135deg,#ffd700,#ff8c00);font-weight:900;font-size:.9rem}
 
     /* SUCCESS */
     .success-screen{display:none;text-align:center;padding:70px 20px}
     .success-screen.show{display:block}
-    .success-screen .big{font-size:72px;margin-bottom:14px}
-    .success-screen h2{font-size:2.2rem;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#ffd700,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .success-screen p{color:rgba(255,255,255,0.6);font-size:1rem;margin-bottom:26px}
-    .site-link{display:inline-block;padding:14px 30px;border-radius:12px;background:linear-gradient(135deg,#ffd700,#ff8c00);color:#1a0a4e;font-weight:900;text-decoration:none;font-size:.95rem}
+    .success-screen .big{font-size:70px;margin-bottom:12px}
+    .success-screen h2{font-size:2rem;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#ffd700,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .success-screen p{color:rgba(255,255,255,0.58);font-size:.95rem;margin-bottom:24px}
+    .site-link{display:inline-block;padding:13px 28px;border-radius:11px;background:linear-gradient(135deg,#ffd700,#ff8c00);color:#1a0a4e;font-weight:900;text-decoration:none;font-size:.9rem}
 
-    @media(max-width:650px){
-      #couponEl{grid-template-columns:72px 1fr}
-      .c-body{grid-template-columns:1fr}
-      .c-phone{display:none}
+    @media(max-width:600px){
       .form-grid{grid-template-columns:1fr}
-      .c-stub{padding:12px 5px}
-      .stub-logo{width:48px;height:48px}
-    }
-    @media(max-width:460px){
       .dl-row{flex-direction:column;align-items:stretch}
       .dl-btn{min-width:unset;width:100%}
       .coupon-top{flex-direction:column;align-items:flex-start}
@@ -198,8 +185,7 @@
 <main class="page">
   <header class="topbar">
     <a href="https://dmoonadvertising.com" class="brand">
-      <span class="brand-moon">🌙</span>
-      <span>Dmoon Advertising</span>
+      🌙 <span>Dmoon Advertising</span>
     </a>
   </header>
 
@@ -213,7 +199,8 @@
       <h2>Enter Your Code</h2>
       <p>Type the code sent to you via Instagram or Facebook DM to unlock your official giveaway coupon.</p>
       <label for="codeInput">Your Unique Code</label>
-      <input id="codeInput" maxlength="8" placeholder="EID-4829" autocomplete="one-time-code" required style="text-transform:uppercase;letter-spacing:.12em;font-size:1.15rem;font-weight:700">
+      <input id="codeInput" maxlength="8" placeholder="EID-4829" autocomplete="one-time-code" required
+        style="text-transform:uppercase;letter-spacing:.12em;font-size:1.1rem;font-weight:700">
       <button class="main-btn" type="submit">🎁 Generate My Coupon</button>
       <div class="msg" id="codeMsg"></div>
     </form>
@@ -226,64 +213,14 @@
       <button class="back-btn" id="newEntryBtn">← Try Different Code</button>
     </div>
 
-    <!-- OFFICIAL DMOON COUPON -->
+    <!-- COUPON WITH OFFICIAL BACKGROUND -->
     <div id="couponEl">
-      <!-- LEFT STUB -->
-      <div class="c-stub">
-        <div class="stub-logo">
-          <span>D<br>Moon<br>Adv</span>
-        </div>
-        <div class="c-code-vert">
-          <span>Code :</span>
-          <span class="c-code-val" id="couponCode">EID-0000</span>
-        </div>
-      </div>
-
-      <!-- RIGHT MAIN -->
-      <div class="c-main">
-        <div class="c-body">
-          <!-- LEFT TEXT -->
-          <div>
-            <div class="free-badge">
-              <span class="gift-emoji">🎁</span>
-              <span class="badge-txt">Free<br>Gifts</span>
-            </div>
-            <div class="c-title">Eid Special<br>Giveaway</div>
-            <div class="c-sub">Celebrate Eid with us and win exciting Gifts</div>
-
-            <div class="f-line">
-              <span class="f-lbl">Name</span>
-              <span class="f-val" id="couponName">&nbsp;</span>
-            </div>
-            <div class="f-line">
-              <span class="f-lbl">Phone</span>
-              <span class="f-val" id="couponPhone">&nbsp;</span>
-            </div>
-            <div class="f-line">
-              <span class="f-lbl">Location</span>
-              <span class="f-val" id="couponLocation">&nbsp;</span>
-            </div>
-            <div class="congrats">Congratulations on participating - wishing you the best of luck!</div>
-          </div>
-
-          <!-- PHONE MOCKUP -->
-          <div class="c-phone">
-            <div class="ph-wrap">
-              <div class="ph-inner">
-                <div class="ph-give">Give</div>
-                <div class="ph-away">Away</div>
-                <div class="ph-spec">Special Gifts</div>
-              </div>
-              <div class="ph-lucky">5 Lucky Winners</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-social">
-          <span>dmoonadvertising</span>
-          <i class="s-i s-fb">f</i>
-          <i class="s-i s-ig">◎</i>
-        </div>
+      <img class="coupon-bg" src="/coupon-bg.png" alt="D Moon Eid Special Giveaway Coupon" crossorigin="anonymous">
+      <div class="overlay">
+        <div class="ov-code" id="couponCode">EID-0000</div>
+        <div class="ov-name" id="couponName"></div>
+        <div class="ov-phone" id="couponPhone"></div>
+        <div class="ov-emirate" id="couponEmirate"></div>
       </div>
     </div>
 
@@ -330,7 +267,7 @@
   </div>
 </main>
 
-<!-- CONGRATULATIONS MODAL -->
+<!-- MODAL -->
 <div class="modal" id="successModal">
   <div class="modal-card">
     <div class="emoji">🌙</div>
@@ -353,13 +290,13 @@
   const GS = 'https://script.google.com/macros/s/AKfycbycSdgKKE9VtAu_LdT3pA_WNasrzmiM85fEBZ0VLVXo_pcwJAnCHmscr8OOSNE6BFXh/exec';
   const WU = 'https://dmoonadvertising.com';
 
-  function validCode(c) { return /^EID-\d{4}$/.test(c); }
-  let ac = '';
-  const $ = id => document.getElementById(id);
+  function validCode(c){return /^EID-\d{4}$/.test(c);}
+  let ac='';
+  const $=id=>document.getElementById(id);
 
   const codeForm=$('codeForm'),ci=$('codeInput'),cm=$('codeMsg'),es=$('entryScreen'),
         cs=$('couponSection'),cc=$('couponCode'),cn=$('couponName'),cp=$('couponPhone'),
-        cl=$('couponLocation'),sm=$('successModal'),mb=$('modalBtn'),df=$('detailsForm'),
+        ce=$('couponEmirate'),sm=$('successModal'),mb=$('modalBtn'),df=$('detailsForm'),
         ni=$('nameInput'),pi=$('phoneInput'),ei=$('emirateInput'),db=$('downloadBtn'),
         dn=$('dlNote'),dm=$('detailsMsg'),nb=$('newEntryBtn'),lo=$('loadingOverlay'),ss=$('successScreen');
 
@@ -370,7 +307,7 @@
   function upd(){
     cn.textContent=ni.value.trim()||'';
     cp.textContent=pi.value.trim()||'';
-    cl.textContent=ei.value||'';
+    ce.textContent=ei.value||'';
     db.disabled=!ok();
     dn.textContent=ok()?'✅ Ready! Click to download your coupon.':'Fill all fields to activate download.';
   }
@@ -403,22 +340,41 @@
     e.preventDefault();
     if(!ok()){msg(dm,'Please fill all fields first.');return;}
     lo.classList.add('show');
+
     const entry={code:ac,name:ni.value.trim(),phone:pi.value.trim(),emirate:ei.value,created_at:new Date().toISOString()};
     try{
       await fetch(GS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'saveEntry',...entry})});
     }catch(e){console.warn(e);}
+
     try{
       const {jsPDF}=window.jspdf;
       const couponEl=document.getElementById('couponEl');
-      const canvas=await html2canvas(couponEl,{scale:2.5,useCORS:true,backgroundColor:null,logging:false});
-      const img=canvas.toDataURL('image/png');
+
+      // Wait for image to load
+      const img=couponEl.querySelector('img');
+      await new Promise(resolve=>{
+        if(img.complete) resolve();
+        else img.onload=resolve;
+      });
+
+      const canvas=await html2canvas(couponEl,{
+        scale:2.5,
+        useCORS:true,
+        allowTaint:false,
+        backgroundColor:null,
+        logging:false,
+        imageTimeout:15000
+      });
+
+      const imgData=canvas.toDataURL('image/png');
       const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
       const pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
-      const ratio=Math.min(pw/canvas.width*96,ph/canvas.height*96)*0.92;
+      const ratio=Math.min(pw/canvas.width*96,ph/canvas.height*96)*0.95;
       const fw=canvas.width*ratio/96,fh=canvas.height*ratio/96;
-      pdf.addImage(img,'PNG',(pw-fw)/2,(ph-fh)/2,fw,fh);
+      pdf.addImage(imgData,'PNG',(pw-fw)/2,(ph-fh)/2,fw,fh);
       pdf.save('Dmoon-Eid-Giveaway-'+ac+'.pdf');
-    }catch(e){console.warn(e);window.print();}
+    }catch(e){console.warn('PDF error:',e);window.print();}
+
     lo.classList.remove('show');
     cs.classList.remove('show'); ss.classList.add('show');
     ss.scrollIntoView({behavior:'smooth'});

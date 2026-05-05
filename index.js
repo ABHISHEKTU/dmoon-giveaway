@@ -358,6 +358,16 @@ app.get('/giveaway', (req, res) => {
   }
 });
 
+app.get('/coupon-bg.png', (req, res) => {
+  const filePath = path.join(__dirname, 'coupon-bg.png');
+  if (fs.existsSync(filePath)) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('Image not found.');
+  }
+});
+
 // ============================================================
 // START
 // ============================================================
