@@ -76,15 +76,27 @@
       inset:0;
     }
 
-    /* CODE — replaced by inline HTML box */
-    .ov-code{ display:none; }
+    /* CODE — on the purple vertical bar left side */
+    .ov-code{
+      position:absolute;
+      left:14.2%;
+      width:3.5%;
+      top:52%;
+      transform:translateY(-50%) rotate(180deg);
+      writing-mode:vertical-rl;
+      color:white;
+      font-weight:900;
+      font-size:clamp(.4rem,1vw,.8rem);
+      letter-spacing:.06em;
+      text-align:center;
+    }
 
     /* NAME field — on the dotted line */
     .ov-name{
       position:absolute;
-      left:24%;
-      top:43%;
-      width:38%;
+      left:31%;
+      top:44%;
+      width:36%;
       color:#ffd700;
       font-weight:700;
       font-size:clamp(.55rem,1.4vw,.95rem);
@@ -97,9 +109,9 @@
     /* PHONE field */
     .ov-phone{
       position:absolute;
-      left:24%;
-      top:55.5%;
-      width:38%;
+      left:31%;
+      top:57%;
+      width:36%;
       color:#ffd700;
       font-weight:700;
       font-size:clamp(.55rem,1.4vw,.95rem);
@@ -112,9 +124,9 @@
     /* EMIRATES field */
     .ov-emirate{
       position:absolute;
-      left:24%;
-      top:68%;
-      width:38%;
+      left:31%;
+      top:70%;
+      width:36%;
       color:#ffd700;
       font-weight:700;
       font-size:clamp(.55rem,1.4vw,.95rem);
@@ -173,7 +185,7 @@
 <main class="page">
   <header class="topbar">
     <a href="https://dmoonadvertising.com" class="brand">
-      <img src="/dmoon-logo.png" alt="Dmoon Logo" style="width:48px;height:48px;object-fit:contain;border-radius:50%;background:white;padding:4px;"> <span>Dmoon Advertising LLC</span>
+      <img src="/dmoon-logo.png" alt="Dmoon Logo" style="width:48px;height:48px;object-fit:contain;border-radius:50%;background:white;padding:4px;"> <span>Dmoon Advertising</span>
     </a>
   </header>
 
@@ -205,18 +217,7 @@
     <div id="couponEl">
       <img class="coupon-bg" src="/coupon-bg.png" alt="D Moon Eid Special Giveaway Coupon" crossorigin="anonymous">
       <div class="overlay">
-        <div id="couponCode" style="
-          position:absolute;
-          left:05%;
-          top:64%;
-          transform:translate(-50%,-50%) rotate(90deg);
-          white-space:nowrap;
-          color:white;
-          font-weight:900;
-          font-size: clamp(.6rem, 1.5vw, 1.2rem);
-          letter-spacing:.08em;
-          z-index:10;
-        ">EID-0000</div>
+        <div class="ov-code" id="couponCode">EID-0000</div>
         <div class="ov-name" id="couponName"></div>
         <div class="ov-phone" id="couponPhone"></div>
         <div class="ov-emirate" id="couponEmirate"></div>
