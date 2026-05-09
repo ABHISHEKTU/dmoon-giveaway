@@ -30,21 +30,40 @@ function generateCode(username) {
   return `EID-${rand}`;
 }
 
+// Save generated code to Google Sheet ValidCodes tab
+async function saveValidCode(code, username, platform) {
+  try {
+    await axios.post(CONFIG.GOOGLE_SCRIPT_URL, {
+      action: 'saveValidCode',
+      code,
+      username,
+      platform,
+      created_at: new Date().toISOString()
+    }, {
+      params: { noRedirect: true }
+    });
+    console.log(`[CODE] Saved valid code ${code} for ${username} to sheet`);
+  } catch (err) {
+    console.error('[CODE] Failed to save valid code:', err.message);
+  }
+}
+
 // ============================================================
 // BUILD DM MESSAGE
 // ============================================================
 function buildDMMessage(username, code) {
   return `🎉 Congratulations ${username}!
 
-You've been detected as a participant in the D Moon Eid Special Giveaway!
+You've been selected as a participant in the D Moon Eid Special Giveaway! 🌙
 
 🎁 Your Unique Code: *${code}*
 
-👉 Visit us at: ${CONFIG.WEBSITE_LINK}
+👉 Click this link to claim your personalized coupon:
+https://dmoon-giveaway-production.up.railway.app/giveaway
 
-Please share this code when claiming your personalized gift.
+Simply enter your unique code on the page and fill in your details to generate and download your official coupon!
 
-Thank you for participating! Winner announcement: 24 May 2026 🌙
+Winner announcement: 24 May 2026 🗓️
 
 — D Moon Advertising Team`;
 }
@@ -134,6 +153,7 @@ app.post('/webhook', async (req, res) => {
 
           processedComments.add(commentId);
           const code = generateCode(fromUsername);
+          await saveValidCode(code, '@' + fromUsername, 'Instagram');
           const message = buildDMMessage('@' + fromUsername, code);
 
           console.log(`[IG] Gift comment from @${fromUsername} — sending DM with code ${code}`);
@@ -170,6 +190,7 @@ app.post('/webhook', async (req, res) => {
 
           processedComments.add(commentId);
           const code = generateCode(fromName);
+          await saveValidCode(code, fromName, 'Facebook');
           const message = buildDMMessage(fromName, code);
 
           console.log(`[FB] Gift comment from ${fromName} — sending DM with code ${code}`);

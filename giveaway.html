@@ -16,7 +16,7 @@
 
     /* TOPBAR */
     .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:white;font-weight:500;font-size:1.1rem;letter-spacing:.05em}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:white;font-weight:900;font-size:1.1rem;letter-spacing:.05em}
 
     /* HERO */
     .hero{text-align:center;margin-bottom:32px}
@@ -77,50 +77,44 @@
     }
 
     /* CODE — on the purple vertical bar left side */
-   .ov-code{
-  position:absolute;
-  left:4%;
-  top:62%;
-  width:2.2%;
-  transform:translateY(-50%) rotate(360deg);
-
-  writing-mode:vertical-rl;
-  color:white;
-  font-weight:900;
-
-  font-size:clamp(.7rem,1.7vw,1.15rem);
-
-  letter-spacing:.03em;
-  text-align:center;
-
-  white-space:nowrap;
-  overflow:hidden;
-}
+    .ov-code{
+      position:absolute;
+      left:14.2%;
+      width:3.5%;
+      top:52%;
+      transform:translateY(-50%) rotate(180deg);
+      writing-mode:vertical-rl;
+      color:white;
+      font-weight:900;
+      font-size:clamp(.4rem,1vw,.8rem);
+      letter-spacing:.06em;
+      text-align:center;
+    }
 
     /* NAME field — on the dotted line */
-   .ov-name{
-  position:absolute;
-  left:26%;
-  top:46%;
-  width:36%;
-  color:#FFFFFF;
-  font-weight:700;
-  font-size:clamp(.7rem,1.7vw,1.15rem);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  text-shadow:0 1px 4px rgba(0,0,0,0.6);
-}
+    .ov-name{
+      position:absolute;
+      left:31%;
+      top:44%;
+      width:36%;
+      color:#ffd700;
+      font-weight:700;
+      font-size:clamp(.55rem,1.4vw,.95rem);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-shadow:0 1px 4px rgba(0,0,0,0.6);
+    }
 
     /* PHONE field */
     .ov-phone{
       position:absolute;
-      left:26%;
-      top:58%;
+      left:31%;
+      top:57%;
       width:36%;
-      color:#FFFFFF;
+      color:#ffd700;
       font-weight:700;
-      font-size:clamp(.7rem,1.7vw,1.15rem);
+      font-size:clamp(.55rem,1.4vw,.95rem);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -130,12 +124,12 @@
     /* EMIRATES field */
     .ov-emirate{
       position:absolute;
-      left:26%;
+      left:31%;
       top:70%;
       width:36%;
-      color:#FFFFFF;
+      color:#ffd700;
       font-weight:700;
-      font-size:clamp(.7rem,1.7vw,1.15rem);
+      font-size:clamp(.55rem,1.4vw,.95rem);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -191,7 +185,7 @@
 <main class="page">
   <header class="topbar">
     <a href="https://dmoonadvertising.com" class="brand">
-      <img src="/dmoon-logo.png" alt="Dmoon Logo" style="width:48px;height:48px;object-fit:contain;border-radius:50%;background:white;padding:4px;"> <span>Dmoon Advertising LLC</span>
+      <img src="/dmoon-logo.png" alt="Dmoon Logo" style="width:48px;height:48px;object-fit:contain;border-radius:50%;background:white;padding:4px;"> <span>Dmoon Advertising</span>
     </a>
   </header>
 
@@ -330,10 +324,15 @@
     if(!validCode(code)){msg(cm,'❌ Please enter a valid code in format EID-XXXX (e.g. EID-4829).');return;}
     try{
       msg(cm,'⏳ Validating code...','ok');
+      // First check if code is a valid generated code
+      const vr=await fetch(GS+'?action=checkValidCode&code='+code);
+      const vd=await vr.json();
+      if(!vd.valid){msg(cm,'❌ Invalid code. Please enter the exact code sent to you via DM.');return;}
+      // Then check if already used
       const r=await fetch(GS+'?action=checkCode&code='+code);
       const d=await r.json();
       if(d.used){msg(cm,'❌ This code has already been used. Each code can only be claimed once.');return;}
-    }catch(e){console.warn(e);}
+    }catch(e){console.warn('Validation error:',e);}
     ac=code; cc.textContent=code;
     es.style.display='none'; cs.classList.add('show');
     sm.classList.add('show'); upd(); clr(cm);
@@ -384,7 +383,7 @@
     lo.classList.remove('show');
     cs.classList.remove('show'); ss.classList.add('show');
     ss.scrollIntoView({behavior:'smooth'});
-    setTimeout(()=>window.location.href=WU,1000);
+    setTimeout(()=>window.location.href=WU,4000);
   });
 
   nb.addEventListener('click',()=>{
