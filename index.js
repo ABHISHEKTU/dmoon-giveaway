@@ -33,15 +33,22 @@ function generateCode(username) {
 // Save generated code to Google Sheet ValidCodes tab
 async function saveValidCode(code, username, platform) {
   try {
-    await axios.post(CONFIG.GOOGLE_SCRIPT_URL, {
-      action: 'saveValidCode',
-      code,
-      username,
-      platform,
-      created_at: new Date().toISOString()
-    }, {
-      params: { noRedirect: true }
-    });
+    // Google Apps Script requires form-encoded POST with redirect following
+    const params = new URLSearchParams();
+    params.append('action', 'saveValidCode');
+    params.append('code', code);
+    params.append('username', username);
+    params.append('platform', platform);
+    params.append('created_at', new Date().toISOString());
+
+    // Use GET with query params as fallback — Apps Script handles both
+    const url = CONFIG.GOOGLE_SCRIPT_URL +
+      '?action=saveValidCode' +
+      '&code=' + encodeURIComponent(code) +
+      '&username=' + encodeURIComponent(username) +
+      '&platform=' + encodeURIComponent(platform);
+
+    await axios.get(url, { maxRedirects: 5 });
     console.log(`[CODE] Saved valid code ${code} for ${username} to sheet`);
   } catch (err) {
     console.error('[CODE] Failed to save valid code:', err.message);
