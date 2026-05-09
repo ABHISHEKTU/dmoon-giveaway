@@ -62,18 +62,20 @@ async function saveValidCode(code, username, platform) {
 function buildDMMessage(username, code) {
   return `🎉 Congratulations ${username}!
 
-You've been selected as a participant in the D Moon Eid Special Giveaway! 🌙
+You've been exclusively selected to participate in the D Moon Eid Special Giveaway! 🌙
 
-🎁 Your Unique Code: *${code}*
+🎁 Your Unique Entry Code: *${code}*
 
-👉 Click this link to claim your personalized coupon:
+👉 Claim your personalized gift coupon here:
 https://dmoon-giveaway-production.up.railway.app/giveaway
 
-Simply enter your unique code on the page and fill in your details to generate and download your official coupon!
+Enter your unique code, fill your details & download your exclusive coupon instantly!
 
-Winner announcement: 24 May 2026 🗓️
+🎰 A Lucky Draw will be held to select the 5 winners from all participants!
+📅 Winner announcement: 24 May 2026
 
-— D Moon Advertising Team`;
+Best of luck!✨
+— DMoon Advertising LLc`;
 }
 
 // ============================================================
