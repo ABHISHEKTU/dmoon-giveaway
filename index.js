@@ -13,6 +13,7 @@ const CONFIG = {
   IG_BUSINESS_ACCOUNT_ID: process.env.IG_BUSINESS_ACCOUNT_ID || '17841411697514213',
   FB_PAGE_ID: process.env.FB_PAGE_ID || '297209906812982',
   WEBSITE_LINK: 'https://www.dmoonadvertising.com',
+  GOOGLE_SCRIPT_URL: process.env.GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbycSdgKKE9VtAu_LdT3pA_WNasrzmiM85fEBZ0VLVXo_pcwJAnCHmscr8OOSNE6BFXh/exec',
 };
 
 // In-memory store for winners (persists while server runs)
