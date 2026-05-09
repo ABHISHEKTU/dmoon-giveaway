@@ -114,6 +114,39 @@ async function sendFacebookDM(fbUserId, message) {
   }
 }
 
+// Save dashboard entry to Google Sheet
+async function saveDashboardEntry(entry) {
+  try {
+    const url = CONFIG.GOOGLE_SCRIPT_URL +
+      '?action=saveDashboardEntry' +
+      '&platform=' + encodeURIComponent(entry.platform) +
+      '&username=' + encodeURIComponent(entry.username) +
+      '&code=' + encodeURIComponent(entry.code) +
+      '&comment=' + encodeURIComponent(entry.comment) +
+      '&dmSent=' + entry.dmSent +
+      '&userId=' + encodeURIComponent(entry.userId || '');
+    await axios.get(url, { maxRedirects: 5 });
+    console.log(`[DASH] Saved dashboard entry for ${entry.username}`);
+  } catch (err) {
+    console.error('[DASH] Failed to save dashboard entry:', err.message);
+  }
+}
+
+// Load dashboard entries from Google Sheet on startup
+async function loadDashboardEntries() {
+  try {
+    const url = CONFIG.GOOGLE_SCRIPT_URL + '?action=getDashboardEntries';
+    const res = await axios.get(url, { maxRedirects: 5 });
+    const data = res.data;
+    if (data && data.entries) {
+      data.entries.forEach(e => winners.push(e));
+      console.log(`[DASH] Loaded ${data.entries.length} entries from sheet`);
+    }
+  } catch (err) {
+    console.error('[DASH] Failed to load dashboard entries:', err.message);
+  }
+}
+
 // ============================================================
 // CHECK IF COMMENT CONTAINS GIFT (case-insensitive)
 // ============================================================
@@ -167,7 +200,7 @@ app.post('/webhook', async (req, res) => {
           console.log(`[IG] Gift comment from @${fromUsername} — sending DM with code ${code}`);
           const sent = await sendInstagramDM(fromId, message);
 
-          winners.push({
+          const igEntry = {
             id: Date.now(),
             platform: 'Instagram',
             username: '@' + fromUsername,
@@ -176,7 +209,9 @@ app.post('/webhook', async (req, res) => {
             comment: text,
             dmSent: sent,
             timestamp: new Date().toISOString(),
-          });
+          };
+          winners.push(igEntry);
+          await saveDashboardEntry(igEntry);
         }
       }
     }
@@ -204,7 +239,7 @@ app.post('/webhook', async (req, res) => {
           console.log(`[FB] Gift comment from ${fromName} — sending DM with code ${code}`);
           const sent = await sendFacebookDM(fromId, message);
 
-          winners.push({
+          const fbEntry = {
             id: Date.now(),
             platform: 'Facebook',
             username: fromName,
@@ -213,7 +248,9 @@ app.post('/webhook', async (req, res) => {
             comment: text,
             dmSent: sent,
             timestamp: new Date().toISOString(),
-          });
+          };
+          winners.push(fbEntry);
+          await saveDashboardEntry(fbEntry);
         }
       }
     }
@@ -412,7 +449,8 @@ app.get('/dmoon-logo.png', (req, res) => {
 // START
 // ============================================================
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await loadDashboardEntries();
   console.log(`D Moon Giveaway Server running on port ${PORT}`);
   console.log(`Dashboard: http://localhost:${PORT}`);
   console.log(`Giveaway: http://localhost:${PORT}/giveaway`);
