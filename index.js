@@ -377,17 +377,20 @@ app.get('/', (req, res) => {
     function copyDM(username, code) {
       const msg = \`🎉 Congratulations \${username}!
 
-You've been detected as a participant in the D Moon Eid Special Giveaway!
+You've been exclusively selected to participate in the D Moon Eid Special Giveaway! 🌙
 
-🎁 Your Unique Code: \${code}
+🎁 Your Unique Entry Code: \${code}
 
-👉 Visit us at: \${website}
+👉 Claim your personalized gift coupon here:
+https://dmoon-giveaway-production.up.railway.app/giveaway
 
-Please share this code when claiming your personalized gift.
+Enter your unique code, fill your details & download your exclusive coupon instantly!
 
-Thank you for participating! Winner announcement: 24 May 2026 🌙
+🎰 A Lucky Draw will be held to select the 5 winners from all participants!
+📅 Winner announcement: 24 May 2026
 
-— D Moon Advertising Team\`;
+Best of luck!✨
+— DMoon Advertising LLC\`;
       navigator.clipboard.writeText(msg);
       const t = document.getElementById('toast');
       t.style.display = 'block';
