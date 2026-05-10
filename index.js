@@ -324,6 +324,7 @@ app.get('/', (req, res) => {
       <h1>D Moon Giveaway Dashboard</h1>
       <p>Eid Special Giveaway — Auto-detecting "Gift" comments</p>
     </div>
+    <button onclick="refreshData()" style="margin-left:auto;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;">🔄 Sync from Sheet</button>
   </header>
 
   <div class="stats">
@@ -398,6 +399,19 @@ Best of luck!✨
     }
     // Auto-refresh every 30 seconds
     setTimeout(() => location.reload(), 30000);
+
+   async function refreshData() {
+      const btn = document.querySelector('button[onclick="refreshData()"]');
+      btn.textContent = '⏳ Syncing...';
+      btn.disabled = true;
+      try {
+        const res = await fetch('/api/refresh');
+        const data = await res.json();
+        btn.textContent = '✅ Synced!';
+        setTimeout(() => location.reload(), 800);
+      } catch(e) {
+        btn.textContent = '❌ Failed';
+        setTimeout(() => { btn.textContent = '🔄 Sync from Sheet'; btn.disabled = false; }, 2000);
   </script>
 </body>
 </html>`);
@@ -412,6 +426,12 @@ Best of luck!✨
 // ============================================================
 app.get('/api/winners', (req, res) => {
   res.json(winners);
+});
+
+app.get('/api/refresh', async (req, res) => {
+  winners.length = 0;
+  await loadDashboardEntries();
+  res.json({ success: true, count: winners.length });
 });
 
 // ============================================================
