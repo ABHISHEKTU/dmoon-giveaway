@@ -6,7 +6,7 @@
   <title>Dmoon Advertising | Eid Special Giveaway</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
@@ -250,7 +250,7 @@
       </div>
       <p class="privacy">By submitting, you agree that Dmoon Advertising may contact you regarding this giveaway and related offers.</p>
       <div class="dl-row">
-        <button class="dl-btn" id="downloadBtn" type="submit" disabled>⬇ Save & Download Coupon PDF</button>
+        <button class="dl-btn" id="downloadBtn" type="submit" disabled>⬇ Save & Download Coupon </button>
         <span class="dl-note" id="dlNote">Fill all fields to activate download.</span>
       </div>
       <div class="msg" id="detailsMsg"></div>
@@ -351,16 +351,12 @@
     }catch(e){console.warn(e);}
 
     try{
-      const {jsPDF}=window.jspdf;
       const couponEl=document.getElementById('couponEl');
-
-      // Wait for image to load
       const img=couponEl.querySelector('img');
       await new Promise(resolve=>{
         if(img.complete) resolve();
         else img.onload=resolve;
       });
-
       const canvas=await html2canvas(couponEl,{
         scale:2.5,
         useCORS:true,
@@ -369,15 +365,15 @@
         logging:false,
         imageTimeout:15000
       });
-
-      const imgData=canvas.toDataURL('image/png');
-      const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-      const pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
-      const ratio=Math.min(pw/canvas.width*96,ph/canvas.height*96)*0.95;
-      const fw=canvas.width*ratio/96,fh=canvas.height*ratio/96;
-      pdf.addImage(imgData,'PNG',(pw-fw)/2,(ph-fh)/2,fw,fh);
-      pdf.save('Dmoon-Eid-Giveaway-'+ac+'.pdf');
-    }catch(e){console.warn('PDF error:',e);window.print();}
+      // Download as PNG image — works in Instagram browser too!
+      const link=document.createElement('a');
+      link.download='Dmoon-Eid-Giveaway-'+ac+'.png';
+      link.href=canvas.toDataURL('image/png');
+      link.click();
+    }catch(e){
+      console.warn('Image download error:',e);
+      window.print();
+    }
 
     lo.classList.remove('show');
     cs.classList.remove('show'); ss.classList.add('show');
