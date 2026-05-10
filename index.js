@@ -412,6 +412,8 @@ Best of luck!✨
       } catch(e) {
         btn.textContent = '❌ Failed';
         setTimeout(() => { btn.textContent = '🔄 Sync from Sheet'; btn.disabled = false; }, 2000);
+      }
+    }
   </script>
 </body>
 </html>`);
