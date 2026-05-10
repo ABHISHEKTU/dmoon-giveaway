@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dmoon Advertising | Eid Special Giveaway</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+ 
   
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -281,7 +281,7 @@
   <div class="loading-card">
     <div class="spinner"></div>
     <p>Generating your coupon...</p>
-    <small>Saving details & creating PDF</small>
+    <small>Saving details & generating image</small>
   </div>
 </div>
 
@@ -350,29 +350,58 @@
       await fetch(GS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'saveEntry',...entry})});
     }catch(e){console.warn(e);}
 
-    try{
-      const couponEl=document.getElementById('couponEl');
-      const img=couponEl.querySelector('img');
-      await new Promise(resolve=>{
-        if(img.complete) resolve();
-        else img.onload=resolve;
+   try{
+      // Draw coupon directly on canvas — works on all browsers
+      const bgImg = new Image();
+      bgImg.crossOrigin = 'anonymous';
+      bgImg.src = '/coupon-bg.png';
+      await new Promise((resolve, reject) => {
+        bgImg.onload = resolve;
+        bgImg.onerror = reject;
       });
-      const canvas=await html2canvas(couponEl,{
-        scale:2.5,
-        useCORS:true,
-        allowTaint:false,
-        backgroundColor:null,
-        logging:false,
-        imageTimeout:15000
-      });
-      // Download as PNG image — works in Instagram browser too!
-      const link=document.createElement('a');
-      link.download='Dmoon-Eid-Giveaway-'+ac+'.png';
-      link.href=canvas.toDataURL('image/png');
+
+      const canvas = document.createElement('canvas');
+      canvas.width = bgImg.naturalWidth;
+      canvas.height = bgImg.naturalHeight;
+      const ctx = canvas.getContext('2d');
+
+      // Draw background image
+      ctx.drawImage(bgImg, 0, 0);
+
+      const W = canvas.width;
+      const H = canvas.height;
+
+      // Draw CODE in purple bar
+      ctx.save();
+      ctx.font = `bold ${W*0.022}px Poppins, Arial`;
+      ctx.fillStyle = '#FFD700';
+      ctx.textAlign = 'center';
+      ctx.translate(W*0.05, H*0.72);
+      ctx.rotate(-Math.PI/2);
+      ctx.fillText(ac, 0, 0);
+      ctx.restore();
+
+      // Draw NAME
+      ctx.font = `bold ${W*0.02}px Poppins, Arial`;
+      ctx.fillStyle = '#FFD700';
+      ctx.textAlign = 'left';
+      ctx.fillText(ni.value.trim(), W*0.31, H*0.49);
+
+      // Draw PHONE
+      ctx.fillText(pi.value.trim(), W*0.31, H*0.595);
+
+      // Draw EMIRATE
+      ctx.fillText(ei.value, W*0.31, H*0.705);
+
+      // Download
+      const link = document.createElement('a');
+      link.download = 'Dmoon-Eid-Giveaway-' + ac + '.png';
+      link.href = canvas.toDataURL('image/png');
       link.click();
+
     }catch(e){
-      console.warn('Image download error:',e);
-      window.print();
+      console.warn('Download error:',e);
+      alert('Please screenshot the coupon above to save it!');
     }
 
     lo.classList.remove('show');
