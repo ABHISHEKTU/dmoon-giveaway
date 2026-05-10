@@ -353,10 +353,10 @@
    try{
       // Draw coupon directly on canvas — works on all browsers
       // Fetch image as blob to bypass CORS in Instagram browser
-      const blob = await fetch('/coupon-bg.png').then(r => r.blob());
-      const blobUrl = URL.createObjectURL(blob);
+      const resp = await fetch('/coupon-bg-base64');
+      const json = await resp.json();
       const bgImg = new Image();
-      bgImg.src = blobUrl;
+      bgImg.src = json.data;
       await new Promise((resolve, reject) => {
         bgImg.onload = resolve;
         bgImg.onerror = reject;
@@ -400,7 +400,7 @@
       link.download = 'Dmoon-Eid-Giveaway-' + ac + '.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
-      URL.revokeObjectURL(blobUrl);
+      
     }catch(e){
       console.warn('Download error:',e);
       alert('Please screenshot the coupon above to save it!');
