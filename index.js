@@ -451,15 +451,13 @@ app.get('/giveaway', (req, res) => {
   }
 });
 
-app.get('/coupon-bg-base64', (req, res) => {
+app.get('/coupon-bg.png', (req, res) => {
   const filePath = path.join(__dirname, 'coupon-bg.png');
   if (fs.existsSync(filePath)) {
-    const data = fs.readFileSync(filePath);
-    const base64 = data.toString('base64');
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.json({ data: 'data:image/png;base64,' + base64 });
+    res.sendFile(filePath);
   } else {
-    res.status(404).json({ error: 'Image not found' });
+    res.status(404).send('Image not found.');
   }
 });
 
